@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    font-family: "Poppins";
+}
+.login-container {
+    min-height: 100vh;
+    display: flex;  
+    justify-content: center;
+    background: linear-gradient(to bottom right, #e7717d, #e9b8b3);
+  }
+  
+
+  .signup-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #124e66, #1b252b);
+    /* background: linear-gradient(90deg, #d48d8c 0,#8f9be5 40%); */
+  }
+  
+  .login-form-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 16px;
+    animation: scaleIn 0.2s ease-out;
+  }
+  
+ 
+ 
+  
+  .login-form-container {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    padding-top: 64px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin-top: 5rem;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  
+  .error-text {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  
+  
+  .form-sign-input {
+    width: 85%;
+    padding: 15px 16px 15px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    transition: all 0.3s;
+  }
+  .form-input {
+    width: 85%;
+    padding: 15px 16px 15px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    transition: all 0.3s;
+  }
+  
+  .form-input::placeholder {
+    /* color: rgba(255, 255, 255, 0.6); */
+    color:black;
+  }
+
+  .form-sign-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    /* color: #1A211A; */
+  }
+  
+
+  form h4{
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    font-size: 2rem;
+  }
+  
+
+  .form-sign-input:focus {
+    outline: none;
+    border-color: transparent;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: transparent;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+ 
+  .para{
+    margin-top: 1.5rem;
+    text-align: center;
+    color:black;
+  }
+  .para-sign{
+    margin-top: 1.5rem;
+    text-align: center;
+    color:ghostwhite;
+  }
+
+   .para a{
+    color:black;
+   }
+
+   .para-sign a{
+    color: powderblue;
+   }
+ 
+   
+   .btn-grad {background-image: linear-gradient(to right, #1D2B64 0%, #F8CDDA  51%, #1D2B64  100%)}
+   .btn-grad {
+      margin: 10px;
+      padding: 15px 45px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;            
+      box-shadow: 0 0 20px #eee;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .btn-grad:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+   
+    
+    .btn-signup {background-image: linear-gradient(to right, #34e89e 0%, #0f3443  51%, #34e89e  100%)}
+    .btn-signup {
+       margin: 10px;
+       padding: 15px 45px;
+       text-align: center;
+       text-transform: uppercase;
+       transition: 0.5s;
+       background-size: 200% auto;
+       color: white;            
+       box-shadow: 0 0 15px #eee;
+       border-radius: 10px;
+       display: block;
+       width: 100%;
+     }
+
+     .btn-signup:hover {
+       background-position: right center; /* change the direction of the change here */
+       color: #fff;
+       text-decoration: none;
+     }
+   
+  
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  
+  .btn-login {background-image: linear-gradient(to right, #283048 0%, #859398  51%, #283048  100%)}
+  .btn-login {
+     
+    
+       margin: 10px;
+       padding: 15px 45px;
+       text-align: center;
+       text-transform: uppercase;
+       transition: 0.5s;
+       background-size: 200% auto;
+       color: white;            
+       box-shadow: 0 0 20px #eee;
+       border-radius: 10px;
+       display: block;
+       width: 100%;
+     
+
+     
+    
+    
+  
+   }
+
+   
+  
+
+   .btn-login:hover {
+    
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+   
+  
+  
+
+  
+
+  
+ 
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
