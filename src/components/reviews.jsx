@@ -3,7 +3,7 @@ import { NavBar } from "./ui/nav"
 import {db,auth} from '../firebase'
 import { useEffect } from "react"
 
-export const Reviews = () =>{
+export const Reviews = ({isSidebarVisible, setIsSidebarVisible}) =>{
 
     useEffect(()=>{
         
@@ -11,8 +11,8 @@ export const Reviews = () =>{
 
     return(
         <div className="grid">
-                <NavBar />  
-                <Aside />  
+                <NavBar setIsSidebarVisible={setIsSidebarVisible} />  
+                <Aside isSidebarVisible={isSidebarVisible} />  
                
         </div>
     )

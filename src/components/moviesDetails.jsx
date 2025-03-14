@@ -1,4 +1,4 @@
-import {  data, useLocation, useNavigate } from "react-router-dom"
+import {   useLocation, useNavigate } from "react-router-dom"
 import { Aside } from "./ui/aside"
 import { NavBar } from "./ui/nav"
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaStar, FaRegStar } from 'react-icons/fa'; // Import the star icons
 
 
-export const MoviesDeatils = () =>{
+export const MoviesDeatils = ({isSidebarVisible, setIsSidebarVisible}) =>{
 
     const [cast,setCast] = useState([])
     const [crew,setCrew] = useState([])
@@ -20,9 +20,6 @@ export const MoviesDeatils = () =>{
     const [rating, setRating] = useState(0); // Manage rating (stars)
     const [moviesReview, setMoviesReview] = useState([]); 
 
-    
-    
-    
     const location = useLocation();
     // console.log(location);
     
@@ -34,7 +31,7 @@ export const MoviesDeatils = () =>{
     
     const CAST_CREW = `https://api.themoviedb.org/3/movie/${moviesDetail.id}/credits?api_key=6cb1d6fecb9d7f38697a5d2a1db2858c&language=en-US`
     const SIMILAR_MOVIES = `https://api.themoviedb.org/3/movie/${moviesDetail.id}/similar?api_key=6cb1d6fecb9d7f38697a5d2a1db2858c&language=en-US&page=1`
-
+    const MOVIES_REVIEWS = `https://api.themoviedb.org/3/movie/${moviesDetail.id}/reviews?api_key=6cb1d6fecb9d7f38697a5d2a1db2858c&language=en-US&page=1`
     
     
     useEffect(()=>{
@@ -49,9 +46,17 @@ export const MoviesDeatils = () =>{
         })
 
         axios.get(SIMILAR_MOVIES).then((res)=>{
-            setSimilarMovies(res.data.results)
+            setSimilarMovies(res.data.results)           
+        }).catch((err)=>{
+            console.log(err);
             
+        })
+
+
+        axios.get(MOVIES_REVIEWS).then((res)=>{
+            console.log(res.data.results);
             
+            // setMoviesReview(res.data.results)           
         })
        
     },[moviesDetail])
@@ -65,18 +70,17 @@ export const MoviesDeatils = () =>{
             top: 0,
             behavior: 'smooth' // This makes the scroll smooth
           });
-        
-        
     };
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
-      };
+    };
     
-      const handleStarClick = (index) => {
+    const handleStarClick = (index) => {
         setRating(index + 1);
-      };
+    };
 
+    
     //   Adding reviews toi DataBase
     const addDataToDb = async () => {
         const userName = auth.currentUser?.displayName;
@@ -87,15 +91,7 @@ export const MoviesDeatils = () =>{
         }
     
         try {
-            // Query the existing reviews to get the current count
-            const reviewsRef = collection(db, userName);
-            const querySnapshot = await getDocs(reviewsRef);
             
-            // Get the current count of reviews
-            const currentCount = querySnapshot.size;  // Number of existing reviews
-    
-            // Create a new document reference with the incremented count
-            // const docRef = doc(db, "movies", "reviews");
             const collRef = collection(db,"Movies")
 
             await addDoc(collRef,{
@@ -103,15 +99,8 @@ export const MoviesDeatils = () =>{
                 "review": review,
                 "stars": rating,
                 "userName":userName,
-
             })
     
-            // Add the review to the Firestore database
-            // await setDoc(docRef, {
-            //     movieName: moviesDetail.title,
-            //     review: review,
-            //     stars: rating,
-            // });
     
             console.log("Review added successfully");            
 
@@ -119,6 +108,7 @@ export const MoviesDeatils = () =>{
             console.error("Error adding review to DB: ", error);
         }
     };
+     
 
 
             // Inside your component
@@ -131,7 +121,7 @@ export const MoviesDeatils = () =>{
                     const querySnapshot = await getDocs(q);
                     const reviews = [];
                     querySnapshot.forEach((doc) => {
-                        reviews.push(doc.data());  // Push each review into the array
+                        reviews.unshift(doc.data());  // Push each review into the array
                     });
                     setMoviesReview(reviews);  // Set all the reviews to the state
                 } catch (error) {
@@ -145,14 +135,19 @@ export const MoviesDeatils = () =>{
 
         }, [moviesDetail]); // This useEffect runs whenever moviesDetail changes
 
- 
-    
       const handleReviewSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         // console.log("Review:", review);
         // console.log("Rating:", rating);
         // You can submit the review and rating to your backend or API here.
-        addDataToDb()
+        if(!review || !rating){
+            alert("Please enter a review and rating");  // Alert the user if the review or rating is missing
+            return; // Return early if the review or rating is missing    
+        }       
+
+        addDataToDb()   // Add the review to the Firestore database       
+        setReview(""); // Clear the review input
+        setRating(0); // Reset the rating
         setIsModalOpen(false); // Close the modal after submission
       };
 
@@ -164,8 +159,8 @@ export const MoviesDeatils = () =>{
     return(
         <>
              <div className="grid">
-                    <NavBar />  
-                    <Aside />  
+                    <NavBar setIsSidebarVisible={setIsSidebarVisible} />  
+                    <Aside isSidebarVisible={isSidebarVisible}/>  
                     <div className="details-container">
                         <div className="first-section">
                             <div className="movieDetail-card"> 
@@ -256,7 +251,6 @@ export const MoviesDeatils = () =>{
                                 </div>
                             </div>
                         </div>
-                       
                         <hr />                     
                               
                             <div className="second-section">
@@ -266,7 +260,7 @@ export const MoviesDeatils = () =>{
                                         <div className="review-card" key={index}>
                                                                                                
                                             <div className="review-user">
-                                                <FaUserCircle style={{fontSize:"1.7rem"}} />
+                                                <FaUserCircle className="userIcon" />
                                                 <p className="userPara"><strong>{res.userName }</strong> </p>
                                                 {/* Display star ratings based on res.stars */}
                                                 <div className="starss">
@@ -278,15 +272,16 @@ export const MoviesDeatils = () =>{
                                                     
                                                 </div>
                                             </div>
-                                            <p style={{fontSize:"1.1rem",marginTop:"1rem"}}>Reviews: {res.review}</p>
+                                            <div className="review-content">
+                                                <p style={{fontSize:"1.1rem",marginTop:"1rem"}}>{res.review}</p>
+                                            </div>        
                                         </div>
 
-                                                );
-                                            })}
+                                    );
+                                })}
                             </div>                                
                         </div>
-                    </div>
-                    
+                    </div>  
         </>
     )
 }

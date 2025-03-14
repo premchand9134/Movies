@@ -3,19 +3,18 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { SiThemoviedatabase } from "react-icons/si";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
-import { useState } from "react";
 
-export const NavBar = ({setIsSidebarVisible}) => {
-    // Set default state for sidebar visibility
+
+export const NavBar = ({ setIsSidebarVisible }) => {
     
     const navigate = useNavigate();
+    
     // console.log("setIsSidebarVisible:", setIsSidebarVisible);
 
-    // Handle logout
     const handleLogout = async () => {
         try {
             await signOut(auth); // Sign out the user
-            // navigate('/signin'); // Redirect to sign-in page after logout
+            navigate('/signin'); // Redirect to sign-in page after logout
         } catch (error) {
             console.error("Logout error:", error); // Handle error if any during logout
         }
@@ -23,7 +22,8 @@ export const NavBar = ({setIsSidebarVisible}) => {
 
     // Toggle sidebar visibility
     const handleToggle = () => {
-        setIsSidebarVisible(prevState => !prevState);  // Toggle visibility
+        console.log("Toggling sidebar visibility");
+        setIsSidebarVisible(prevState => !prevState); // Toggle based on previous state
     };
 
     return (
@@ -42,3 +42,4 @@ export const NavBar = ({setIsSidebarVisible}) => {
         
     );
 };
+

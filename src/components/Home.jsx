@@ -4,9 +4,7 @@ import { Aside } from '../components/ui/aside'
 import { Main } from '../components/ui/main'
 import { useState } from 'react'
 
-export const Home = () =>{
-    
-    const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+export const Home = ({setIsSidebarVisible,isSidebarVisible}) =>{
 
 
     return(
