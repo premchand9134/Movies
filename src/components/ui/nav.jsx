@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { SiThemoviedatabase } from "react-icons/si";
@@ -5,24 +6,26 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
 
+ 
 export const NavBar = ({ setIsSidebarVisible }) => {
     
     const navigate = useNavigate();
-    
+
     // console.log("setIsSidebarVisible:", setIsSidebarVisible);
 
     const handleLogout = async () => {
         try {
             await signOut(auth); // Sign out the user
+            // Remove JWT token from localStorage
+            localStorage.removeItem("jwtToken");
             navigate('/signin'); // Redirect to sign-in page after logout
         } catch (error) {
             console.error("Logout error:", error); // Handle error if any during logout
-        }
+        };
     };
-
+ 
     // Toggle sidebar visibility
     const handleToggle = () => {
-        console.log("Toggling sidebar visibility");
         setIsSidebarVisible(prevState => !prevState); // Toggle based on previous state
     };
 
@@ -41,5 +44,6 @@ export const NavBar = ({ setIsSidebarVisible }) => {
         </nav>
         
     );
-};
+}; 
+
 

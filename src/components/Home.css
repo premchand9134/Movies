@@ -52,7 +52,7 @@ nav p{
     font-family: "Akronim", system-ui;
     font-weight: 400;
     font-style:normal;
-    text-shadow: 0 0 50px tomato, 0 0 20px tomato, 0 0 30px tomato; 
+    text-shadow: 0 0 50px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 0, 0, 0.85); 
     
 }
 
@@ -77,24 +77,27 @@ nav p{
   border-radius: 8px;
   font-size: 17px;
   font-weight: 500;
+ 
+  transition: 0.5s ease;
+  user-select: none;
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #008cff, 0 0 10px #008cff, 0 0 20px #008cff,
+    0 0 50px #008cff;
+}
+
+.nav-button:hover,
+:focus {
   color: #ffffff80;
   text-shadow: none;
   background: transparent;
   cursor: pointer;
   box-shadow: transparent;
   border: 1px solid #ffffff80;
-  transition: 0.5s ease;
-  user-select: none;
-}
-
-.nav-button:hover,
-:focus {
-  color: #ffffff;
-  background: #008cff;
-  border: 1px solid #008cff;
-  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
-  box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
-    0 0 100px #008cff;
+  box-shadow: none;
+  
 }
 
 .HomeLogo:hover{
@@ -177,7 +180,6 @@ body {
 
 /* Main content container */
 .main-container {
-
     text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
     background-color: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(6px);
@@ -186,7 +188,7 @@ body {
     user-select: none;
     scrollbar-color: transparent transparent;
     /* width: 1400px; */
-    width: 75vw;
+    width: 85vw;
     height: 210px;
     white-space: nowrap;
     text-align: center;
@@ -236,8 +238,7 @@ body {
     justify-content: center;
     /* align-items: center; */
     width: 100vw;
-    
-
+  
 }
 
 .similar-movies{
@@ -283,6 +284,10 @@ body {
     max-width:  45%;
     text-align: center;
     margin-top: 1rem;
+}
+
+.movieDetail-card h3 p{
+  font-family:monospace;
 }
 .second-section{
     min-width: 45%;
@@ -341,7 +346,6 @@ body {
   font-size: 15px;
   margin: 1rem;
     
-
 }
 
 .moviesButton:hover{
@@ -382,6 +386,11 @@ body {
     box-shadow: 10px 25px 10px rgba(0, 0, 0, 0.2);
 }
 
+.similar-container:hover{
+    transform: scale(1.05);
+    transition: 0.4s ease;
+}
+
 
 .modal {
     position: fixed;
@@ -393,8 +402,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-   
+    z-index: 1000;  
     
   }
 
@@ -464,6 +472,8 @@ body {
           box-shadow: 0 0 2px#ffffff80, 0 0 5px #ffffff80, 0 0 15px #ffffff80,
           0 0 15px #ffffff80;
           margin-left: 2rem;  
+          height: fit-content;
+          padding: 0.5rem;
     }
   .modal-actions button {
     padding: 10px 20px;
@@ -491,6 +501,11 @@ body {
           border-radius: 50%;
     font-size: 2rem; 
      
+  }
+
+  .review-user{
+    display: flex;
+    justify-content: space-between;
   }
 
   .review-card{
@@ -529,12 +544,88 @@ body {
     display: flex;
     gap: 1rem;
     flex-direction: row;
+   
     /* text-align: center; */
     /* justify-content: space-between; */
     /* flex-wrap: wrap; */
     
   }
 
+  /* Review section */
+
+  .review-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 1rem;
+    
+    
+  }
+ .reviews{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+   
+ }
+ .box-section{
+    display: flex;
+    gap: 1rem;
+    text-align: center;
+    margin: 0.5rem;
+    
+
+ }
+  .reviewMainDiv{
+    width: 300px;
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 2rem;
+    background-color: black;
+    overflow-y: hidden;
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 0 2.5px rgba(0, 0, 0, 2), 0 0 10px rgba(0, 0, 0, 2), 0 0 25px rgba(0, 0, 0, 2),
+      0 0 50px rgba(0, 0, 0, 2);
+  }
+
+  .userName{
+    color: gold;
+    text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold;
+  }
+
+  .box-section p{
+    font-weight: 500;
+  }
+
+  .review-stars{
+    display:flex;
+    margin: 5px;
+    width:max-content;
+    gap: 5px;
+    font-size: 20px;
+    color: gold; 
+    margin: 1rem 1rem 1rem 0; 
+    flex-wrap: wrap; 
+    border: 1px solid black;
+    background-color: black;
+    padding: 0px 10px; 
+    border-radius: 1rem;
+    box-shadow: 0 0 2px#ffffff80, 0 0 5px #ffffff80, 0 0 15px #ffffff80,
+     0 0 15px #ffffff80;
+    
+  }
+
+  .revHeading{
+    text-align: center;
+    color:slateblue;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.85), 0 0 10px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 0, 0, 0.85);
+  }
+
+  .reviewTextBox{
+    cursor:auto;
+  }
   
   
 @media(max-width: 800px) {
@@ -567,4 +658,537 @@ body {
         opacity: 1; /* Make sidebar visible */
         
     }
+}
+
+@media(min-width: 800px) and (max-width: 1200px) {
+    .main-container{
+      width: 55vh;
+      margin-left: 0%;
+    }
+
+    aside{
+      width: 80%;
+    }
+
+    .details-container{
+      justify-content: flex-start
+    }
+
+    .main-container img{
+      height: 150px;
+      width: 130px;
+      margin-top: 1rem;
+    }
+
+    .first-section{
+      width: 40vw;
+      margin-left: 0%;
+    }
+
+    .movieDetail-card{
+      height: fit-content;
+    }
+
+    .movieDetail-card img {
+      height: 15vh;
+    }
+
+    .movieDetail-card h3 {
+      font-size: 0.8rem;
+    }
+
+    .movieDetail-card p {
+      font-size: 0.8rem;
+      line-height: 1.5rem;
+    }
+
+    .movieDetail-card button {
+      font-size: 0.7rem;
+      box-shadow: 0 0 2px tomato, 0 0 5px tomato, 0 0 10px tomato,
+      0 0 20px tomato;
+      
+    }
+
+    .modal{
+      position: fixed;
+    top: 0%;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    }
+
+    .modal-content{
+      height: fit-content;
+    }
+
+    .first-section h6{
+      font-size: 0.8rem
+    }
+
+    .cast-Card img{
+      height: 50px;
+      width: 50px;
+    }
+
+    .cast-Card{
+      height: 80px;
+      margin-top: 0.5rem;
+    }
+
+    .cast-name{
+      font-size: 0.5rem !important;
+    }
+    .cast-job{
+      font-size: 0.5rem !important;
+     
+    }
+    
+    .second-section{
+      width: 50%;
+      
+    }
+
+    .review-card{
+      height: 250px;
+    }
+
+    .userIcon{
+      font-size: 3rem;
+      height: fit-content;
+    }
+
+    .userPara{
+      font-size: 1rem;
+    }
+
+    .starss{
+      width: 50%;
+      padding-top: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .review-content p{
+      font-size: 1rem !important;
+    }
+
+  
+    .reviews{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      width: 90%;
+      margin-left: 5px;
+    }
+
+    
+
+    .reviewMainDiv{
+      width: 280px;
+      height: 300px;
+      
+    }
+}
+
+@media(min-width: 690px) and (max-width: 800px){
+    .main-container{
+      width: 65vh;
+      margin-left: 0%;
+      height:fit-content;
+      font-size: 0.7rem;
+    }
+
+    .main-container img{
+      height: 120px;
+      width: 120px;
+      margin-top: 1rem;
+    }
+
+    main{
+      margin-left:2rem ;
+    }
+
+    .nav-logo{
+      font-size: 2rem;
+    }
+    nav p{
+      font-size: 1.8rem;
+      
+    }
+
+    .nav-bar button{
+      font-size: 1rem;
+      width: 110px;
+      text-align: center;
+    }
+
+
+    .first-section{
+      width: 50vw;
+      margin-left: 10px;
+      margin-right: 0%;
+    }
+
+    .movieDetail-card{
+      height: fit-content;
+      width: 100%;
+    }
+
+    
+
+   
+
+    .movieDetail-card{
+      height: fit-content;
+    }
+
+    .movieDetail-card img {
+      height: 15vh;
+    }
+
+    .movieDetail-card h3 {
+      font-size: 0.8rem;
+    }
+
+    .movieDetail-card p {
+      font-size: 0.8rem;
+      line-height: 1.5rem;
+    }
+
+    .movieDetail-card button {
+      font-size: 0.7rem;
+      box-shadow: 0 0 2px tomato, 0 0 5px tomato, 0 0 10px tomato,
+      0 0 20px tomato;
+      
+    }
+
+    
+    .modal{
+      position: fixed;
+    top: 0%;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    }
+
+    .modal-content{
+      height: fit-content;
+    }
+
+    .first-section h6{
+      font-size: 0.8rem
+    }
+
+    .cast-Card img{
+      height: 80px;
+      width: 80px;
+    }
+
+    .cast-Card{
+      height: 110px;
+      margin-top: 0.5rem;
+    }
+
+    .cast-name{
+      font-size: 0.5rem !important;
+    }
+    .cast-job{
+      font-size: 0.5rem !important;
+     
+    }
+
+    .second-section{
+      width: 50%;
+      
+    }
+
+    .review-user{
+      /* width: 100%; */
+      display: flex;
+      flex-direction: row;
+    }
+
+    .review-card{
+      height: 250px;
+    }
+
+    .userIcon{
+      font-size: 3rem;
+      height: fit-content;
+    }
+
+    .userPara{
+      font-size: 0.8rem;
+    }
+
+    aside{
+      width: 90px;
+    }
+
+    .starss{
+      width: 50%;
+      margin-left: 0%;
+      justify-content: center;
+      padding-top: 0.5rem;
+      font-size: 0.8rem;
+      
+    }
+    .review-content p{
+      font-size: 1rem !important;
+    }
+
+    .similar-movies{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    .similar-container{
+      width: 100%;
+     
+    }
+
+    .similar-container img {
+      width: 100%;
+      height: 100px;
+      
+    }
+
+    .reviews{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      width: 90%;
+      margin-left: 1.5rem;
+    }
+
+    
+
+    .reviewMainDiv{
+      width: 280px;
+      height: 300px;
+      
+    }
+
+
+
+} 
+
+@media(min-width: 440px) and (max-width: 690px){
+    .main-container{
+      width: 75vh;
+      margin-left: 0%;
+      height:fit-content;
+      font-size: 0.7rem;
+    }
+
+    .main-container img{
+      height: 100px;
+      width: 100px;
+      margin-top: 1rem;
+    }
+
+    .logo{
+      font-size: 1.5rem;
+    }
+
+    main{
+      margin-left: 2rem;
+    }
+
+    aside{
+      width: 80px;
+    }
+
+    .nav-logo{
+      font-size: 1.5rem;
+    }
+    nav p{
+      font-size: 1.4rem;
+      
+    }
+
+    .nav-bar button{
+      font-size: 0.7rem;
+      width: 80px;
+      padding-left: 22%;
+      text-align: center;
+    }
+
+    .details-container{
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+    }
+
+    .first-section{
+      max-width:  100%;
+      margin-left: 2rem;
+     
+      margin-right: 0%;
+    }
+
+    .movieDetail-card{
+      height: fit-content;
+      width: 100%;
+    }
+
+    .movieDetail-card h3{
+      font-size: 1.1rem;
+      font-family:monospace;
+    }
+
+    .movieDetail-card img {
+      height: 200px;
+      /* width: 100%; */
+    }
+
+    .modal{
+      position: fixed;
+    top: 15%;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    }
+
+    .modal-content{
+      height: fit-content;
+    }
+
+    .similar-movies{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    .similar-container{
+      width: 150px;
+     height: 150px;
+     margin-left: 1rem;
+     
+    }
+
+    .similar-container img{
+     width: 150px;
+     height: 150px;
+     
+    }
+
+    .second-section{
+      
+      max-width: 100%;
+    }
+    
+}
+
+
+@media(min-width: 332px) and (max-width: 440px){
+  .main-container{
+    width: 49vh;
+    margin-left: 0%;
+    height:fit-content;
+    font-size: 0.6rem;
+  }
+
+  
+
+  .main-container img{
+    height: 100px;
+    width: 90px;
+    margin-top: 1rem;
+  }
+
+  .logo{
+    font-size: 1.5rem;
+  }
+
+  aside{
+    width: 70px;
+  }
+  
+  main{
+    margin-left: 1rem;
+  }
+
+  .Logo{
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .nav-logo{
+    font-size: 1.5rem;
+  }
+  nav p{
+    font-size: 1.4rem;
+    
+  }
+
+  .nav-bar button{
+    font-size: 0.7rem;
+    width: 80px;
+    padding-left: 22%;
+    text-align: center;
+   
+  }
+
+  .details-container{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .first-section{
+    max-width:  100%;
+    margin-left: 2rem;
+   
+    margin-right: 0%;
+  }
+
+  .movieDetail-card{
+    height: fit-content;
+    width: 100%;
+  }
+
+  .movieDetail-card h3{
+    font-size: 1.1rem;
+    font-family:monospace;
+  }
+
+  .movieDetail-card img {
+    height: 200px;
+    /* width: 100%; */
+  }
+
+  .modal{
+    position: fixed;
+  top: 15%;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  }
+
+  .modal-content{
+    height: fit-content;
+  }
+
+  .similar-movies{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .similar-container{
+    width: 150px;
+   height: 150px;
+   margin-left: 1rem;
+   
+  }
+
+  .similar-container img{
+   width: 150px;
+   height: 150px;
+   
+  }
+
+  .second-section{
+    
+    max-width: 100%;
+  }
+
+  .userPara{
+    font-size: 1rem;
+  }
 }

@@ -12,28 +12,32 @@ export const Signup = () =>{
     const [fullname,setFullname] = useState()
     const [error,setError] = useState("")
 
-    const handleFormsubmit = (e) =>{
-      e.preventDefault()
-       createUserWithEmailAndPassword(auth,email,password).then((userCredential)=>{
-        const user = userCredential.user;
-        console.log(user);
-        console.log( "current user",auth.currentUser);           
-          updateProfile(auth.currentUser,{
-            displayName:fullname,
-           
-          })   
-
-        
-          
-          
-          navigate('/')
-
-       }).catch((err)=>{
-        console.log(err); 
-        setError(err.message)
-             
-       })
-    }
+    const handleFormsubmit = (e) => {
+      e.preventDefault();
+  
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+  
+          // Update the user's display name
+          updateProfile(auth.currentUser, {
+            displayName: fullname,
+          });
+  
+          // Get the JWT token after successful sign-up
+          user.getIdToken().then((idToken) => {
+            // Store the token securely (for example, in localStorage)
+            localStorage.setItem("jwtToken", idToken);
+  
+            // Navigate to home after signup
+            navigate('/');
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(err.message);
+        });
+    };
       
       
     return(
@@ -89,3 +93,5 @@ export const Signup = () =>{
       </div>
     )
 }
+
+
